@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+    <title>ADDRESS LIST</title>
+{% endblock %}    
+
+{% block content %}
+{% load static %}
+
+<table class="table table-dark">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">AREA ID</th>
+        <th scope="col">CITY</th>
+        <th scope="col">AREA NAME</th>
+        <th scope="col">STREET NAME</th>
+        <th scope="col">HOUSE NUMBER</th>
+        <th scope="col">AREA PINCODE</th>
+        <th scope="col">UPDATE</th>
+        <th scope="col">DELETE</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for i in object_list %}
+      <tr>
+        <td>{{i.area_id}}</td>
+        <td>{{i.city}}</td>
+        <td>{{i.area_name}}</td>
+        <td>{{i.street_name}}</td>
+        <td>{{i.house_no}}</td>
+        <td>{{i.area_pincode}}</td>
+          <td><button class="btn btn-warning"><a href="{% url 'updateaddress_url' i.address_id %}">UPDATE</a></button></td>
+          <td><button class="btn btn-danger"><a href="{% url 'deleteaddress_url' i.address_id %}">DELETE</a></button></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table> 
+{% endblock %}

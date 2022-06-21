@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+    <title>SUCCESS REPORT LIST</title>
+{% endblock %}    
+
+{% block content %}
+{% load static %}
+
+<table class="table table-dark">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">SUCCESS REPORT ID</th>
+        <th scope="col">AUCTION DETAILS</th>
+        <th scope="col">MAX AMOUNT BID</th>
+        <th scope="col">PRODUCT BUYER</th>
+        <th scope="col">PRODUCT OWNER</th>
+        <th scope="col">PRODUCT SOLD</th>
+        <th scope="col">UPDATE</th>
+        <th scope="col">DELETE</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for i in object_list %}
+      <tr>
+        <td>{{i.success_report_id}}</td>
+        <td>{{i.auctiondetails}}</td>
+        <td>{{i.max_amount_bid}}</td>
+        <td>{{i.product_buyer}}</td>
+        <td>{{i.product_owner}}</td>
+        <td>{{i.is_sold}}</td>
+          <td><button class="btn btn-warning"><a href="{% url 'updatesuccess_url' i.success_report_id %}">UPDATE</a></button></td>
+          <td><button class="btn btn-danger"><a href="{% url 'deletesuccess_url' i.success_report_id %}">DELETE</a></button></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table> 
+{% endblock %}

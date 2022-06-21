@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+    <title>CANCEL REPORT LIST</title>
+{% endblock %}    
+
+{% block content %}
+{% load static %}
+
+<table class="table table-dark">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">CANCEL REPORT ID</th>
+        <th scope="col">AUCTION DETAILS</th>
+        <th scope="col">REASON</th>
+        <th scope="col">UPDATE</th>
+        <th scope="col">DELETE</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for i in object_list %}
+      <tr>
+        <td>{{i.cancel_report_id}}</td>
+        <td>{{i.auctiondetails}}</td>
+        <td>{{i.reason}}</td>
+          <td><button class="btn btn-warning"><a href="{% url 'updatecancel_url' i.cancel_report_id %}">UPDATE</a></button></td>
+          <td><button class="btn btn-danger"><a href="{% url 'deletecancel_url' i.cancel_report_id %}">DELETE</a></button></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table> 
+{% endblock %}

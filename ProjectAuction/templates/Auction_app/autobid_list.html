@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+    <title>AUTO BID LIST</title>
+{% endblock %}    
+
+{% block content %}
+{% load static %}
+
+<table class="table table-dark">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">AUTO BID ID</th>
+        <th scope="col">BIDDER</th>
+        <th scope="col">STARTING PRICE</th>
+        <th scope="col">INCREMENT PRICE BY</th>
+        <th scope="col">MAX PRICE</th>
+        <th scope="col">UPDATE</th>
+        <th scope="col">DELETE</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for i in object_list %}
+      <tr>
+        <td>{{i.autobid_id}}</td>
+        <td>{{i.bidder}}</td>
+        <td>{{i.starting_price}}</td>
+        <td>{{i.increment_price_by}}</td>
+        <td>{{i.max_price}}</td>
+          <td><button class="btn btn-warning"><a href="{% url 'updateautobid_url' i.autobid_id %}">UPDATE</a></button></td>
+          <td><button class="btn btn-danger"><a href="{% url 'deleteautobid_url' i.autobid_id %}">DELETE</a></button></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table> 
+{% endblock %}

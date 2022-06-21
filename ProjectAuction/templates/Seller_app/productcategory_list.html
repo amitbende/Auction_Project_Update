@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+    <title>PRODUCT CATEGORY LIST</title>
+{% endblock %}    
+
+{% block content %}
+{% load static %}
+
+<table class="table table-dark">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">PRODUCT CATEGORY ID</th>
+        <th scope="col">PRODUCT CATEGORY NAME</th>
+        <th scope="col">UPDATE</th>
+        <th scope="col">DELETE</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for i in object_list %}
+      <tr>
+        <td>{{i.product_category_id}}</td>
+        <td>{{i.product_category_name}}</td>
+          <td><button class="btn btn-warning"><a href="{% url 'updatecategory_url' i.product_category_id %}">UPDATE</a></button></td>
+          <td><button class="btn btn-danger"><a href="{% url 'deletecategory_url' i.product_category_id %}">DELETE</a></button></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table> 
+{% endblock %}

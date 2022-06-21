@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+    <title>STATE LIST</title>
+{% endblock %}    
+
+{% block content %}
+{% load static %}
+
+<table class="table table-dark">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">STATE ID</th>
+        <th scope="col">COUNTRY</th>
+        <th scope="col">STATE NAME</th>
+        <th scope="col">UPDATE</th>
+        <th scope="col">DELETE</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for i in object_list %}
+      <tr>
+        <td>{{i.state_id}}</td>
+        <td>{{i.country}}</td>
+        <td>{{i.state_name}}</td>
+          <td><button class="btn btn-warning"><a href="{% url 'updatestate_url' i.state_id %}">UPDATE</a></button></td>
+          <td><button class="btn btn-danger"><a href="{% url 'deletestate_url' i.state_id %}">DELETE</a></button></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table> 
+{% endblock %}

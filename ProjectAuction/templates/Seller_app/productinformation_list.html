@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+    <title>PRODUCT INFORMATION LIST</title>
+{% endblock %}    
+
+{% block content %}
+{% load static %}
+
+<table class="table table-dark">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">PRODUCT INFORMATION ID</th>
+        <th scope="col">PRODUCT SUBCATEGORY</th>
+        <th scope="col">USER</th>
+        <th scope="col">PRODUCT NAME</th>
+        <th scope="col">PRODUCT DETAILS</th>
+        <th scope="col">PRODUCT VERIFY</th>
+        <th scope="col">PRODUCT BASEPRICE</th>
+        <th scope="col">PRODUCT SOLD</th>
+        <th scope="col">PRODUCT LOCATION</th>
+        <th scope="col">UPDATE</th>
+        <th scope="col">DELETE</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for i in object_list %}
+      <tr>
+        <td>{{i.product_info_id}}</td>
+        <td>{{i.product_sub_category}}</td>
+        <td>{{i.user}}</td>
+        <td>{{i.product_info_details}}</td>
+        <td>{{i.product_verify}}</td>
+        <td>{{i.product_baseprice}}</td>
+        <td>{{i.is_sold}}</td>
+        <td>{{i.product_location}}</td>
+          <td><button class="btn btn-warning"><a href="{% url 'updateproinfo_url' i.product_info_id %}">UPDATE</a></button></td>
+          <td><button class="btn btn-danger"><a href="{% url 'deleteproinfo_url' i.product_info_id %}">DELETE</a></button></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table> 
+{% endblock %}

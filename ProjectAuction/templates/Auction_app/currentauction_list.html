@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block title %}
+    <title>CURRENT AUCTION LIST</title>
+{% endblock %}    
+
+{% block content %}
+{% load static %}
+
+<table class="table table-dark">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">CURRENT AUCTION ID</th>
+        <th scope="col">AUCTION DETAILS</th>
+        <th scope="col">UPDATE</th>
+        <th scope="col">DELETE</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for i in object_list %}
+      <tr>
+        <td>{{i.current_auction_id}}</td>
+        <td>{{i.auction_details}}</td>
+          <td><button class="btn btn-warning"><a href="{% url 'updatecurrent_url' i.current_auction_id %}">UPDATE</a></button></td>
+          <td><button class="btn btn-danger"><a href="{% url 'deletecurrent_url' i.current_auction_id %}">DELETE</a></button></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table> 
+{% endblock %}
